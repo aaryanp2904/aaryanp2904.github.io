@@ -1,0 +1,359 @@
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #212121;
+    color: #fff;
+    font-family: monospace, serif;
+    letter-spacing: 0.05em;
+}
+
+h1 {
+    font-size: 23px;
+}
+
+.form {
+    width: 300px;
+    padding: 64px 15px 24px;
+    margin: 0 auto;
+}
+
+.form .control {
+    margin: 0 0 24px;
+}
+
+.form .control input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    font-family: monospace, serif;
+    letter-spacing: 0.05em;
+    font-size: 16px;
+}
+
+.form .control input:hover, .form .control input:focus {
+    outline: none;
+    border: 0;
+}
+
+.form .btn {
+    width: 100%;
+    display: block;
+    padding: 14px 16px;
+    background: transparent;
+    outline: none;
+    border: 0;
+    color: #fff;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 16px;
+}
+
+.block-cube {
+    position: relative;
+}
+
+.block-cube .bg-top {
+    position: absolute;
+    height: 10px;
+    background: #020024;
+    background: linear-gradient(90deg, #020024 0%, #340979 37%, #00d4ff 94%);
+    bottom: 100%;
+    left: 5px;
+    right: -5px;
+    transform: skew(-45deg, 0);
+    margin: 0;
+}
+
+.block-cube .bg-top .bg-inner {
+    bottom: 0;
+}
+
+.block-cube .bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #020024;
+    background: linear-gradient(90deg, #020024 0%, #340979 37%, #00d4ff 94%);
+}
+
+.block-cube .bg-right {
+    position: absolute;
+    background: #020024;
+    background: #00d4ff;
+    top: -5px;
+    z-index: 0;
+    bottom: 5px;
+    width: 10px;
+    left: 100%;
+    transform: skew(0, -45deg);
+}
+
+.block-cube .bg-right .bg-inner {
+    left: 0;
+}
+
+.block-cube .bg .bg-inner {
+    transition: all 0.2s ease-in-out;
+}
+
+.block-cube .bg-inner {
+    background: #212121;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+}
+
+.block-cube .text {
+    position: relative;
+    z-index: 2;
+}
+
+.block-cube.block-input input {
+    position: relative;
+    z-index: 2;
+}
+
+.block-cube.block-input input:focus~.bg-right .bg-inner, .block-cube.block-input input:focus~.bg-top .bg-inner, .block-cube.block-input input:focus~.bg-inner .bg-inner {
+    top: 100%;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.block-cube.block-input .bg-top, .block-cube.block-input .bg-right, .block-cube.block-input .bg {
+    background: rgba(255, 255, 255, 0.5);
+    transition: background 0.2s ease-in-out;
+}
+
+.block-cube.block-input .bg-right .bg-inner, .block-cube.block-input .bg-top .bg-inner {
+    transition: all 0.2s ease-in-out;
+}
+
+.block-cube.block-input:focus .bg-top, .block-cube.block-input:focus .bg-right, .block-cube.block-input:focus .bg, .block-cube.block-input:hover .bg-top, .block-cube.block-input:hover .bg-right, .block-cube.block-input:hover .bg {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.block-cube.block-cube-hover:focus .bg .bg-inner, .block-cube.block-cube-hover:hover .bg .bg-inner {
+    top: 100%;
+}
+
+#selection {
+    position: absolute;
+    top: 25px;
+    left: 1680px;
+    width: 170px;
+    height: 900px;
+}
+
+#opinion, #question, #tier, #drawing, .playerOption {
+    height: 40px;
+    width: 70px;
+    margin-top: 145px;
+    margin-left: 32.5px;
+    color: white;
+}
+
+#game-area {
+    position: absolute;
+    border-color: pink;
+    border-style: solid;
+    border-radius: 50px;
+    width: 1350px;
+    height: 900px;
+    left: 300px;
+    top: 25px;
+    box-sizing: border-box;
+    padding: 1%;
+    overflow-y: auto;
+}
+
+#host-game-area {
+    overflow-y: auto;
+}
+
+#game-details {
+    position: absolute;
+    width: 250px;
+    height: 400px;
+    left: 20px;
+    top: 25px;
+    box-sizing: border-box;
+}
+
+#role, #captain {
+    padding: 10px
+}
+
+#chat-area {
+    position: absolute;
+    width: 250px;
+    height: 400px;
+    left: 20px;
+    top: 450px;
+    border-style: solid;
+    border-color: green;
+    border-radius: 25px;
+    background-color: darkgray;
+}
+
+
+#alien-button {
+    position: absolute;
+    left: 120px;
+    top: 875px;
+    border-radius: 37.5px;
+    height: 75px;
+    width: 75px;
+    background-color: red;
+    color: white;
+}
+
+#alien-button:disabled, #alien-button[disabled] {
+    background-color: #cccccc;
+    color: #666666;
+}
+
+#message-box {
+    position: absolute;
+    top: 345px;
+    border-radius: 350px;
+    border-style: solid;
+    width: 246px;
+    height: 50px;
+}
+
+#message-area {
+    position: absolute;
+    height: 345px;
+    width: 244px;
+    border-top-left-radius: 23px;
+    border-top-right-radius: 23px;
+    background-color: darkgray;
+    overflow-y: auto;
+}
+
+#send-message {
+    position: absolute;
+    top: 345px;
+    right: 0px;
+    border-radius: 25px;
+    height: 50px;
+    width: 50px;
+    background-color: blue;
+    color: white;
+}
+
+#game-details, #selection {
+    border-style: solid;
+    border-color: green;
+    border-radius: 50px;
+}
+
+.text {
+    color: white;
+}
+
+button+button {
+    margin-top: 50px;
+}
+
+.button {
+    display: block;
+}
+
+.hidden {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+}
+
+input[type=checkbox]+label {
+    color: #ccc;
+    background-color: black;
+}
+
+input[type=checkbox]:checked+label {
+    background-color: blue;
+}
+
+.playerName {
+    display: block;
+    width: 80px;
+    margin-left: 45px;
+    border: 1px solid #fff;
+    padding: 10px;
+}
+
+.headerContainer {
+    display: flex;
+  }
+  
+  #addCard {
+    background: none;
+    border: none;
+    font-size: 40px;
+  }
+  
+  #board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    width: 80vw;
+    height: 70vh;
+    background-color: rgb(30, 30, 30);
+  }
+  
+  .row {
+    display: flex;
+    width: 100%;
+    height: 85px;  
+    background-color: rgb(56, 56, 56);
+  }
+  
+  .label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100px;
+    background-color: green;  
+  }
+  
+  .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85px;
+    width: 100px;
+    background-color: white;
+    color: black;
+  }
+/*   
+  #bank {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80vw;
+    height: 300px;
+    background-color: rgb(30, 30, 30);
+    margin-bottom: 20px;
+  } */
+
+  
+  #bank {
+    display: flex;
+    flex-wrap: wrap;
+    width: 120px;
+    height: 750px;
+    background-color: rgb(30, 30, 30);
+    margin-bottom: 20px;
+    margin-left:25px;
+  }
