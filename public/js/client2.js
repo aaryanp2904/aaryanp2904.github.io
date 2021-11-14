@@ -106,6 +106,10 @@ socket.on('name-already-in-use', function () {
     alert('Name is already in use')
 })
 
+socket.on('room-full', function() {
+    alert("The room you want to join already has 10 players.")
+})
+
 socket.on('role', data => {
     // If player is a human
     if (data === 0) {
