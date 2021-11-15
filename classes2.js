@@ -78,7 +78,7 @@ class Room {
 
     // Task selection and handling
     #currentTask;
-    #currentTaskers;
+    #currentTaskers = [];
     #captainSubmitted = false;
     #numberOfResponses = 0;
     #responseDict = {};
