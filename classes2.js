@@ -507,32 +507,27 @@ class Room {
         // Add the player to the disconnected players list
         this.#disconnectedPlayers.push(playerToRemove)
 
-        // // Iterate through every player
-        // for (let i = 0; i < this.#players.length; i++) {
+        // Iterate through every player
+        for (let i = 0; i < this.#players.length; i++) {
 
-        //     // Remove the player if they are in the players list
-        //     let player = this.#players[i]
-        //     if (player === playerToRemove) {
-        //         player.hasDisconnected()
-        //     }
-        // }
-
-        playerToRemove.hasDisconnected()
-
-        let ind = this.#aliens.indexOf(playerToRemove)
-        if (ind > 0) {this.#aliens.splice(ind, 1)}
+            // Remove the player if they are in the players list
+            let player = this.#players[i]
+            if (player === playerToRemove) {
+                player.hasDisconnected()
+            }
+        }
 
         // Iterate through every alien
-        // for (let i = 0; i < this.#aliens.length; i++) {
+        for (let i = 0; i < this.#aliens.length; i++) {
 
-        //     // Remove the player if they are in the aliens list
-        //     let player = this.#aliens[i]
-        //     if (player === playerToRemove) {
-        //         this.#aliens.splice(i, 1)
-        //     }
-        // }
+            // Remove the player if they are in the aliens list
+            let player = this.#aliens[i]
+            if (player === playerToRemove) {
+                this.#aliens.splice(i, 1)
+            }
+        }
     }
-
+    
     checkPlayerDisconnected(name) {
         // Iterate through disconnectedPLayers list
         for (var i = 0; i < this.#disconnectedPlayers.length; i++) {
