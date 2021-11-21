@@ -69,6 +69,7 @@ startGamebtn.addEventListener('click', function () {
     console.log('ready')
 
     // Hide the start game button
+    startGamebtn.style.display = 'none';
     delete startGamebtn;
 })
 
