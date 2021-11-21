@@ -80,7 +80,7 @@ joinBtn.addEventListener('click', function (e) {
             sessionStorage.setItem('nickname', gamename.value)
             socket.emit('client-details', [sessionStorage.getItem('room-code'), sessionStorage.getItem('nickname')])
         }
-
+        
         else {
             alert('Enter name')
         }
@@ -95,6 +95,7 @@ socket.on('joining-response', data => {
     if (data) {
         loginForm.innerHTML = ''
         gameArea.textContent = "Successfully joined room with code: " + sessionStorage.getItem('room-code') + '. Your name is ' + sessionStorage.getItem('nickname')
+        document.title = sessionStorage.getItem('nickname') + " - Alien Game"
     }
 
     else {
@@ -104,10 +105,6 @@ socket.on('joining-response', data => {
 
 socket.on('name-already-in-use', function () {
     alert('Name is already in use')
-})
-
-socket.on('room-full', function() {
-    alert("The room you want to join already has 10 players.")
 })
 
 socket.on('role', data => {
@@ -134,6 +131,8 @@ socket.on('receive-alien-chat-message', data => {
     // Add message to chat/message area
     let msg = document.createElement('li')
     msg.textContent = data[0] + ': ' + data[1]
+    msg.style.color = "black"
+    msg.style.fontStyle = "cursive";
     messageArea.appendChild(msg)
 })
 
@@ -143,6 +142,8 @@ sendMessageBtn.addEventListener('click', function (e) {
     // Add the message that player sent to the chatbox
     let msg = document.createElement('li')
     msg.textContent = 'You: ' + messageBox.value
+    msg.style.color = "black"
+    msg.style.fontFamily = "cursive";
     messageArea.appendChild(msg)
     messageBox.value = ''
 })
@@ -223,7 +224,7 @@ function checkOptionLimit(box) {
         }
     }
 
-    // If no options are chosen
+    // If no options are chosen 
     if (numOptionsChosen === 0) {
 
         // Don't display the submit button
@@ -307,7 +308,7 @@ function createPlayerButtons(data) {
     selection.appendChild(playerSubmitBtn)
 }
 
-function checkPlayerLimit(box) {
+function checkPlayerLimit() {
 
     // Reset our players chosen counter
     numPlayersChosen = 0
@@ -323,7 +324,7 @@ function checkPlayerLimit(box) {
         }
     }
 
-    // If the number of aliens chosen / number of boxes ticked is the same as the limit
+    // If the number of aliens chosen / number of boxes ticked is the same as the limit 
     if (numPlayersChosen === numPlayerLimit) {
 
         // Show the submit button
@@ -422,7 +423,7 @@ socket.on('writing', data => {
     gameArea.appendChild(breakLine)
     gameArea.appendChild(writingTaskSubmitBtn)
 
-    // Allows user to type without having to click on input field
+    // Allows user to type without having to click on input field 
     writingInputField.focus()
 })
 
@@ -454,7 +455,7 @@ socket.on('drawing', data => {
     gameArea.appendChild(breakLine)
     gameArea.appendChild(breakLine.cloneNode(true));
 
-    // Create and add a fabric.js canvas
+    // Create and add a fabric.js canvas 
     let canva = document.createElement('canvas')
     canva.id = "drawingCanvas"
     const myCanvas = new fabric.Canvas("drawingCanvas", {
@@ -575,7 +576,7 @@ socket.on('tier', data => {
         row.ondragover = onRowDragOver;
         row.ondrop = onRowDrop;
     })
-
+    
     // Add each element in the data sent by the server as a card in the card bank
     for (let i = 1; i < data.length; i++) {
         let card = document.createElement('div');
@@ -739,13 +740,13 @@ function sendTriviaAnswers() {
 }
 
 triviaInputField.addEventListener("keyup", function(event) {
-    event.preventDefault();
-    // If entery key is clicked
-    if (event.keyCode === 13) {
-        // Simulate a button click
-        triviaTaskSubmitBtn.click()
-    }
-});
+        event.preventDefault();
+        // If entery key is clicked
+        if (event.keyCode === 13) {
+            // Simulate a button click
+            triviaTaskSubmitBtn.click()
+        }
+    });
 
 socket.on('task-finished', data => {
     console.log('Turning on alien button.')
@@ -781,7 +782,7 @@ socket.on('choose-aliens', data => {
         alienNameCheckboxes.push(checkBox)
         selection.appendChild(checkBox)
         selection.appendChild(labelButton)
-        checkBox.onclick = function () { checkLimit(checkBox) }
+        checkBox.onclick = function () { checkAlienLimit() }
     }
 
     alienSubmitBtn = document.createElement('button')
@@ -804,7 +805,7 @@ socket.on('choose-aliens', data => {
         <div class='text'>
             Submit
         </div>`
-    alienSubmitBtn.disabled = true
+    alienSubmitBtn.style.display = 'none'
     selection.appendChild(alienSubmitBtn)
 
 })
@@ -891,7 +892,7 @@ function sendAliens() {
     selection.innerHTML = ''
 }
 
-function checkLimit(box) {
+function checkAlienLimit() {
 
     // Reset our alien counter
     numAliensChosen = 0
@@ -904,17 +905,15 @@ function checkLimit(box) {
         if (alienNameCheckboxes[y].checked === true) {
             numAliensChosen++;
             aliensChosen.push(alienNameCheckboxes[y].id)
-            alienSubmitBtn.disabled = false;
+            // If any checkboxis clicked then we make the submit button visible
+            alienSubmitBtn.style.display = 'block';
         }
     }
 
     if (numAliensChosen === 0) {
-        alienSubmitBtn.disabled = true
+        // If no checkboxes were clicked, we make the submit button invisible
+        alienSubmitBtn.style.display = 'none'
     }
-
-    console.log(box.id + " checked value is: ", box.checked)
-
-    console.log("Aliens chosen: ", numAliensChosen)
 
     // If the number of aliens chosen / number of boxes ticked is the same as the limit 
     if (numAliensChosen === alienLimit) {
@@ -953,6 +952,44 @@ socket.on('disconnect', data => {
 
 function reconnectToGame() {
     socket.emit('client-details', [sessionStorage.getItem('room-code'), sessionStorage.getItem('nickname')])
+
+    // // Game Sections 
+    // gameArea = document.getElementById('game-area');
+    // gameDetails = document.getElementById('game-details');
+    // selection = document.getElementById('selection');
+    // messageArea = document.getElementById('message-area');
+    // messageBox = document.getElementById('message-box');
+    // roleDetails = document.getElementById('role');
+    // captainDetails = document.getElementById('captain');
+    // code = document.getElementById('code');
+    // gamename = document.getElementById('name');
+    // loginForm = document.getElementById('login-form');
+    // gameScreen = document.getElementById('game')
+
+    // // Selection Variables / Option Choosing Variables
+    // options = ['writing', 'tier', 'drawing', 'trivia'];
+    // playerList = [];
+
+    // alienNameRadios = [];
+    // numPlayersChosen = 0;
+    // playersChosen = [];
+    // aliensChosen = [];
+    // triviaAnswers = [];
+
+    // // Buttons 
+    // joinBtn = document.getElementById('join');
+    // sendMessageBtn = document.getElementById('send-message')
+    // alienBtn = document.getElementById('alien-button')
+
+    // // Button presets
+    // console.log('Disabling button as preset.')
+    // alienBtn.disabled = true
+    // alienBtn.onclick = function () { buttonPushed(); };
+    // sendMessageBtn.disabled = true;
+
+    // // Style presets for chat
+    // messageArea.style.listStyleType = 'none';
+    // messageBox.disabled = true;
 }
 
 socket.on('game-already-started', data => {
