@@ -17,6 +17,8 @@ startGamebtn.style.margin = '38px'
 
 var socket = io()
 
+var gameStarted = false;
+
 // Room creation and initialisation
 createGamebtn.addEventListener('click', function () {
     socket.emit('create-room')
@@ -58,7 +60,7 @@ socket.on('player-list', data => {
     startGamebtn.style.display = 'none'
 
     // Only show start game button based on how many players are in the game
-    if (data.length > 3) {
+    if (data.length > 3 && !gameStarted) {
         startGamebtn.style.display = 'block';
     }
 })
@@ -70,7 +72,8 @@ startGamebtn.addEventListener('click', function () {
 
     // Hide the start game button
     startGamebtn.style.display = 'none';
-    delete startGamebtn;
+    
+    gameStarted= true;
 })
 
 
