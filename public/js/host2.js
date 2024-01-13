@@ -15,7 +15,7 @@ startGamebtn.style.display = 'none'
 startGamebtn.style.margin = '38px'
 
 
-var socket = io()
+var socket = io.connect()
 
 var gameStarted = false;
 
