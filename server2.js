@@ -21,12 +21,12 @@ game = new classes.Game();
 
 // When the url is 127.0.0.1:3000/ then we get the index file
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index2.html');
+    res.sendFile(__dirname + '/index.html');
 });
 
 // sends host file when url is 127.0.0.1:3000/host
 app.get('/host', (req, res) => {
-    res.sendFile(__dirname + '/host2.html');
+    res.sendFile(__dirname + '/host.html');
 });
 
 
